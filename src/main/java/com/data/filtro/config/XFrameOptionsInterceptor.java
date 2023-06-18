@@ -15,7 +15,7 @@ public class XFrameOptionsInterceptor implements HandlerInterceptor {
         response.setHeader("Content-Security-Policy", "script-src 'self' https://stackpath.bootstrapcdn.com " +
                 "https://code.jquery.com " +
                 "https://cdn.jsdelivr.net " +
-                "https://cdnjs.cloudflare.com ; ");
+                "https://cdnjs.cloudflare.com 'unsafe-inline'; ");
         response.setHeader("X-Content-Type-Options", "nosniff");
         response.setHeader("Expect-CT", "max-age=86400");
         return true;
