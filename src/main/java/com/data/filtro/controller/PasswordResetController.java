@@ -54,6 +54,11 @@ public class PasswordResetController {
 
 
     public void sendMail(String recipentAddress, String link) throws MessagingException, UnsupportedEncodingException {
+        JavaMailSender mailSender = new JavaMailSenderImpl();
+        ((JavaMailSenderImpl) mailSender).setHost("smtp.gmail.com");
+        ((JavaMailSenderImpl) mailSender).setPort(587);
+        ((JavaMailSenderImpl) mailSender).setUsername("voduc0100@gmail.com");
+        ((JavaMailSenderImpl) mailSender).setPassword("tvhnwfasjnjhbcro");
         System.out.println("tao doi tuong MimeMessage");
         MimeMessage message = mailSender.createMimeMessage();
         System.out.println("gan gia tri helper");
