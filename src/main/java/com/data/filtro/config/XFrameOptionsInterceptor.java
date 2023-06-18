@@ -24,7 +24,7 @@ public class XFrameOptionsInterceptor implements HandlerInterceptor {
         response.setHeader("Content-Security-Policy", "script-src 'self' https://stackpath.bootstrapcdn.com " +
                 "https://code.jquery.com " +
                 "https://cdn.jsdelivr.net " +
-                "https://cdnjs.cloudflare.com 'unsafe-inline'; ");
+                "https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval'; ");
 //        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4040/*");
         return true;
     }
