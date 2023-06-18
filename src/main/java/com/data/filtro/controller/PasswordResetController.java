@@ -43,25 +43,29 @@ public class PasswordResetController {
             accountService.updateResetPasswordToken(token, email);
             String resetPasswordLink = Utility.getSiteURL(request) + "/reset-password?token=" + token;
             sendMail(email, resetPasswordLink);
-            model.addAttribute("successMessage", "Vào email để nhận đường dẫn để đặt lại mật khẩu!");
+            model.addAttribute("successMessage", "The email has been sent with a link to reset your password.!");
         } catch (UserNotFoundException ex) {
             model.addAttribute("message", ex.getMessage());
         } catch (UnsupportedEncodingException | MessagingException exception) {
-            model.addAttribute("message", "Lỗi khi gửi mail");
+            model.addAttribute("message", "Error sending email");
         }
         return "user/boot1/forgotPassword";
     }
 
 
     public void sendMail(String recipentAddress, String link) throws MessagingException, UnsupportedEncodingException {
+        System.out.println("tao doi tuong MimeMessage");
         MimeMessage message = mailSender.createMimeMessage();
+        System.out.println("gan gia tri helper");
         MimeMessageHelper helper = new MimeMessageHelper(message);
         helper.setFrom("contact@ark.com", "Arkadian");
         helper.setTo(recipentAddress);
-        String subject = "Đặt lại mật khẩu";
-        String content = "Đường link dưới đây dùng để đặt lại mật khẩu\n" + link;
+        String subject = "Reset password Four Leaves Shoes";
+        String content = "\"The link below is used to reset the password\n" + link;
         helper.setSubject(subject);
         helper.setText(content);
+        System.out.println("gan xong gia tri helper");
+        System.out.println("gui gmail");
         mailSender.send(message);
     }
 
