@@ -92,10 +92,10 @@
                             <label>Phone Number</label>
                             <th:block th:if="${session.user.getPhoneNumber()!=null}">
                                 <input type="text" class="form-control" placeholder="086" name="phone"
-                                       th:value="${session.user.getPhoneNumber()}">
+                                       th:value="${session.user.getPhoneNumber() != null ? session.user.getPhoneNumber() : '086'}">
                             </th:block>
                             <th:block th:if="${session.user.getPhoneNumber()==null}">
-                                <input type="text" class="form-control" placeholder="086" name="phone">
+                                <input type="text" class="form-control" value="086" name="phone">
                             </th:block>
                             <div class="invalid-feedback"> Please enter a valid phone numbers for shipping updates.
                             </div>
