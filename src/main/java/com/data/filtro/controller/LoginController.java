@@ -42,12 +42,18 @@ public class LoginController {
     }
 
     @GetMapping
-    public String show(Model model) {
-        String _csrfToken = generateRandomString();
-        csrfToken = _csrfToken;
+    public String show(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            String _csrfToken = generateRandomString();
+            csrfToken = _csrfToken;
 //        System.out.println("csrfToken:" + _csrfToken);
-        model.addAttribute("_csrfToken", _csrfToken);
-        return "user/boot1/login";
+            model.addAttribute("_csrfToken", _csrfToken);
+            return "user/boot1/login";
+        }
+        else {
+            return "redirect:/";
+        }
     }
 
     @PostMapping
@@ -70,6 +76,7 @@ public class LoginController {
             return "redirect:/login";
         }
         try {
+//            System.out.println("dang nhap");
             Account account = accountService.authenticateUser(accountName, password);
             User user = userService.getUserById(account.getUser().getId());
 //            System.out.println(user.getName());

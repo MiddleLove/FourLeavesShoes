@@ -52,7 +52,7 @@ public class CartService {
     }
 
     public Cart createCart(User user) {
-        System.out.println("create cart for: " + user.getName());
+//        System.out.println("create cart for: " + user.getName());
         Cart cart = new Cart();
         cart.setUser(user);
         cart.setCreatedDate(new Date());
@@ -132,8 +132,8 @@ public class CartService {
 
     public Cart convertGuestCartToCart(GuestCart guestCart, User user) {
         Cart cart = cartRepository.findCartByUserId(user.getId());
-        System.out.println("user la: " + user.getName() + ", id: " + user.getId());
-        System.out.println(cart == null ? "null" : "not null");
+//        System.out.println("user la: " + user.getName() + ", id: " + user.getId());
+//        System.out.println(cart == null ? "null" : "not null");
         if (cart == null) {
             cart = createCart(user);
         }

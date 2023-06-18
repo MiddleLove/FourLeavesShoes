@@ -93,6 +93,7 @@ public class AccountService {
                 Account authenticateAccount = accountRepository.authenticate(accountName, tempAccount.getPassword());
                 return authenticateAccount;
             } else {
+//                System.out.println("sai mat khau");
                 throw new AuthenticationAccountException("Incorrect Password!");
             }
         } else {
@@ -107,10 +108,10 @@ public class AccountService {
             if (passwordEncoder.matches(password, tempAccount.getPassword())) {
                 return accountRepository.authenticateAdmin(accountName, tempAccount.getPassword());
             } else {
-                throw new AuthenticationAccountException("Sai mật khẩu!");
+                throw new AuthenticationAccountException("Incorrect Password!");
             }
         } else {
-            throw new AuthenticationAccountException("Sai tên đăng nhập!");
+            throw new AuthenticationAccountException("Incorrect AccountName!");
         }
     }
 

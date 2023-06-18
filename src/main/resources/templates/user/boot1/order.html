@@ -79,11 +79,11 @@
                             <label>Email <span class="text-muted">(not required)</span></label>
                             <th:block th:if="${session.user.getEmail()==null}">
                                 <input type="email" class="form-control" name="email"
-                                       placeholder="you@example.com">
+                                       value="you@example.com">
                             </th:block>
                             <th:block th:if="${session.user.getEmail()!=null}">
                                 <input type="email" class="form-control" name="email"
-                                       placeholder="you@example.com" th:value="${session.user.getEmail()}">
+                                       placeholder="you@example.com" th:value="${session.user.getEmail()}" readonly>
                             </th:block>
                             <div class="invalid-feedback"> Please enter a valid email address for shipping updates.
                             </div>
@@ -91,11 +91,11 @@
                         <div class="mb-3">
                             <label>Phone Number</label>
                             <th:block th:if="${session.user.getPhoneNumber()!=null}">
-                                <input type="text" class="form-control" placeholder="SDT" name="phone"
+                                <input type="text" class="form-control" placeholder="086" name="phone"
                                        th:value="${session.user.getPhoneNumber()}">
                             </th:block>
                             <th:block th:if="${session.user.getPhoneNumber()==null}">
-                                <input type="text" class="form-control" placeholder="SDT" name="phone">
+                                <input type="text" class="form-control" placeholder="086" name="phone">
                             </th:block>
                             <div class="invalid-feedback"> Please enter a valid phone numbers for shipping updates.
                             </div>
@@ -103,11 +103,11 @@
                         <div class="mb-3">
                             <label>Address</label>
                             <th:block th:if="${session.user.getAddress()!=null}">
-                                <input type="text" class="form-control" name="address" placeholder="1234 Main St"
+                                <input type="text" class="form-control" name="address" value="1234 Main St"
                                        required="">
                             </th:block>
                             <th:block th:if="${session.user.getAddress()==null}">
-                                <input type="text" class="form-control" name="address" placeholder="1234 Main St"
+                                <input type="text" class="form-control" name="address" value="1234 Main St"
                                        required="">
                             </th:block>
                             <div class="invalid-feedback"> Please enter your shipping address.</div>
@@ -116,10 +116,10 @@
                             <div class="col-md-6 mb-3">
                                 <label>City</label>
                                 <th:block th:if="${session.user.getCity()!=null}">
-                                    <input type="text" name="city" class="form-control">
+                                    <input type="text" name="city" class="form-control" value="HCM">
                                 </th:block>
                                 <th:block th:if="${session.user.getCity()==null}">
-                                    <input type="text" name="city" class="form-control">
+                                    <input type="text" name="city" class="form-control" value="HCM">
                                 </th:block>
                                 <div class="invalid-feedback"> Please select a valid country.</div>
                             </div>

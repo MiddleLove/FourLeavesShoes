@@ -27,4 +27,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new XFrameOptionsInterceptor());
     }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry){
+        registry.addMapping("/login")
+                .allowedOrigins("http://localhost:4040")
+                .allowedMethods("GET", "POST")
+                .allowedHeaders("Content-Type")
+                .maxAge(3600);
+    }
 }

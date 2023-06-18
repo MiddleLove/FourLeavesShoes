@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -70,7 +71,13 @@ public class UserController {
             model.addAttribute("message", "Please Login");
             return "user/boot1/user-billing";
         }
-        List<Order> orderList = orderService.getOrderByUserId(user.getId());
+//        System.out.println("user id: " + user.getId() + " " + user.getName());
+        List<Order> orderList;
+        try {
+            orderList = orderService.getOrderByUserId(user.getId());
+        } catch (Exception e){
+            orderList = new ArrayList<>();
+        }
         //orderList.forEach(s -> System.out.println(s.getId()));
         model.addAttribute("orderList", orderList);
         return "user/boot1/user-billing";
