@@ -88,6 +88,9 @@ public class AccountService {
     public Account authenticateUser(String accountName, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Account tempAccount = getAccountByName(accountName.trim());
+        if (tempAccount.getRoleNumber() != 3){
+            throw new AuthenticationAccountException("Incorrect Account");
+        }
         if (tempAccount != null) {
             if (passwordEncoder.matches(password, tempAccount.getPassword())) {
                 Account authenticateAccount = accountRepository.authenticate(accountName, tempAccount.getPassword());
