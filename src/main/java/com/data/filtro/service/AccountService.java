@@ -87,20 +87,25 @@ public class AccountService {
 
     public Account authenticateUser(String accountName, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        Account tempAccount = getAccountByName(accountName.trim());
-        if (tempAccount.getRoleNumber() != 3){
-            throw new AuthenticationAccountException("Incorrect Account");
-        }
-        if (tempAccount != null) {
-            if (passwordEncoder.matches(password, tempAccount.getPassword())) {
-                Account authenticateAccount = accountRepository.authenticate(accountName, tempAccount.getPassword());
-                return authenticateAccount;
-            } else {
-//                System.out.println("sai mat khau");
-                throw new AuthenticationAccountException("Incorrect Password!");
+        Account tempAccount;
+        try{
+            tempAccount = getAccountByName(accountName.trim());
+            if (tempAccount.getRoleNumber() != 3){
+                throw new AuthenticationAccountException("Incorrect Account");
             }
-        } else {
-            throw new AuthenticationAccountException("Incorrect AccountName!");
+            if (tempAccount != null) {
+                if (passwordEncoder.matches(password, tempAccount.getPassword())) {
+                    Account authenticateAccount = accountRepository.authenticate(accountName, tempAccount.getPassword());
+                    return authenticateAccount;
+                } else {
+//                System.out.println("sai mat khau");
+                    throw new AuthenticationAccountException("Incorrect Password!");
+                }
+            } else {
+                throw new AuthenticationAccountException("Incorrect AccountName!");
+            }
+        } catch (Exception exception){
+            throw new AuthenticationAccountException("Incorrect Account");
         }
     }
 
